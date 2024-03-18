@@ -104,18 +104,21 @@ paths:
           schema:
             type: string
             format: date
+            default: 2024-02-15T15:00:38.122Z
           required: false
         - name: checkoutDate
           in: query
           schema:
             type: string
             format: date
+            default: 2024-02-16T15:00:38.122Z
           required: false
         - name: guestCapacity
           in: query
           schema:
             type: integer
             format: int32
+            default: 1
           required: false
       responses:
         "200":
