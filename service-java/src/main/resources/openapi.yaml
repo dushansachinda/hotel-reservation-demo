@@ -1,23 +1,33 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI definition
-  version: v0
+  title: Reservations API
+  version: v1
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+  - url: "{server}:{port}/reservations"
+    description: Base server URL for Reservations API
+    variables:
+      server:
+        default: http://localhost
+        description: Server host
+      port:
+        enum:
+          - "8080"  # Development
+          - "8080"    # Production
+        default: "8080"
+        description: Server port
 paths:
-  /reservations/{reservation_id}:
+  /{reservation_id}:
     put:
       tags:
-      - reservation-controller
+        - Reservations
       operationId: updateReservation
       parameters:
-      - name: reservation_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: reservation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -26,29 +36,29 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: Reservation updated successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Reservation'
     delete:
       tags:
-      - reservation-controller
+        - Reservations
       operationId: deleteReservation
       parameters:
-      - name: reservation_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: reservation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
-          description: OK
-  /reservations/:
+          description: Reservation deleted successfully
+  /:
     post:
       tags:
-      - reservation-controller
+        - Reservations
       operationId: createReservation
       requestBody:
         content:
@@ -58,61 +68,60 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: Reservation created successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Reservation'
-  /reservations/users/{userId}:
+  /users/{userId}:
     get:
       tags:
-      - reservation-controller
+        - Reservations
       operationId: getUserReservations
       parameters:
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
-          description: OK
+          description: User reservations fetched successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Reservation'
-  /reservations/roomTypes:
+  /roomTypes:
     get:
       tags:
-      - reservation-controller
+        - Reservations
       operationId: getRoomTypes
       parameters:
-      - name: checkinDate
-        in: query
-        required: false
-        schema:
-          type: string
-          default: 2024-02-15T15:00:38.122Z
-      - name: checkoutDate
-        in: query
-        required: false
-        schema:
-          type: string
-          default: 2024-02-16T15:00:38.122Z
-      - name: guestCapacity
-        in: query
-        required: false
-        schema:
-          type: integer
-          format: int32
-          default: 1
+        - name: checkinDate
+          in: query
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: checkoutDate
+          in: query
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: guestCapacity
+          in: query
+          schema:
+            type: integer
+            format: int32
+          required: false
       responses:
         "200":
-          description: OK
+          description: Available room types fetched successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
