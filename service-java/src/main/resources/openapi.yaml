@@ -14,6 +14,9 @@ servers:
         description: The port on which the server is running
         enum:
           - "8080"
+tags:
+  - name: Reservations
+    description: Operations related to reservations
 paths:
   /{reservation_id}:
     put:
@@ -42,7 +45,7 @@ paths:
                 $ref: '#/components/schemas/Reservation'
     delete:
       tags:
-        - reservation-controller
+        - Reservations
       operationId: deleteReservation
       parameters:
         - name: reservation_id
@@ -57,7 +60,7 @@ paths:
   /:
     post:
       tags:
-        - reservation-controller
+        - Reservations
       operationId: createReservation
       requestBody:
         content:
@@ -190,6 +193,11 @@ components:
           type: string
     ReservationRequest:
       type: object
+      required:
+        - checkinDate
+        - checkoutDate
+        - roomType
+        - user
       properties:
         checkinDate:
           type: string
