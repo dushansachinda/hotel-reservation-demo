@@ -135,8 +135,10 @@ components:
       properties:
         checkinDate:
           type: string
+          format: date-time
         checkoutDate:
           type: string
+          format: date-time
     Reservation:
       type: object
       properties:
@@ -147,10 +149,10 @@ components:
           $ref: '#/components/schemas/Room'
         checkinDate:
           type: string
-          format: date
+          format: date-time
         checkoutDate:
           type: string
-          format: date
+          format: date-time
         user:
           $ref: '#/components/schemas/User'
     Room:
@@ -191,8 +193,10 @@ components:
       properties:
         checkinDate:
           type: string
+          format: date-time
         checkoutDate:
           type: string
+          format: date-time
         roomType:
           type: string
         user:
