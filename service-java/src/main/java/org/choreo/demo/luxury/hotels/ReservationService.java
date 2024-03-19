@@ -110,7 +110,7 @@ public class ReservationService {
     }
 
     public List<Reservation> findByUserId(String userId) {
-        return reservationRepository.findByUserId(Integer.parseInt(userId));
+        return reservationRepository.findByUserId(userId);
     }
 
     // Other methods to manipulate reservations
