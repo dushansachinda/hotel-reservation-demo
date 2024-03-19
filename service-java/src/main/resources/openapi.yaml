@@ -3,30 +3,30 @@ info:
   title: Reservations API
   version: v1
 servers:
-- url: {server}:{port}/reservations
-  description: Base server URL for Reservations API
-  variables:
-    server:
-      default: http://localhost
-      description: Base server URL
-    port:
-      enum:
-        - 8080
-      default: 8080
-      description: The port on which the server is running
+  - url: "{server}:{port}/reservations"
+    description: Base server URL for Reservations API
+    variables:
+      server:
+        default: http://localhost
+        description: Base server URL
+      port:
+        default: "8080"
+        description: The port on which the server is running
+        enum:
+          - "8080"
 paths:
   /{reservation_id}:
     put:
       tags:
-      - Reservations
+        - Reservations
       operationId: updateReservation
       parameters:
-      - name: reservation_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: reservation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -42,22 +42,22 @@ paths:
                 $ref: '#/components/schemas/Reservation'
     delete:
       tags:
-      - reservation-controller
+        - reservation-controller
       operationId: deleteReservation
       parameters:
-      - name: reservation_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: reservation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
   /:
     post:
       tags:
-      - reservation-controller
+        - reservation-controller
       operationId: createReservation
       requestBody:
         content:
@@ -75,14 +75,14 @@ paths:
   /users/{userId}:
     get:
       tags:
-      - Reservations
+        - Reservations
       operationId: getUserReservations
       parameters:
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -95,28 +95,28 @@ paths:
   /roomTypes:
     get:
       tags:
-      - Reservations
+        - Reservations
       operationId: getRoomTypes
       parameters:
-      - name: checkinDate
-        in: query
-        required: false
-        schema:
-          type: string
-          default: 2024-02-15T15:00:38.122Z
-      - name: checkoutDate
-        in: query
-        required: false
-        schema:
-          type: string
-          default: 2024-02-16T15:00:38.122Z
-      - name: guestCapacity
-        in: query
-        required: false
-        schema:
-          type: integer
-          format: int32
-          default: 1
+        - name: checkinDate
+          in: query
+          required: false
+          schema:
+            type: string
+            default: 2024-02-15T15:00:38.122Z
+        - name: checkoutDate
+          in: query
+          required: false
+          schema:
+            type: string
+            default: 2024-02-16T15:00:38.122Z
+        - name: guestCapacity
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
       responses:
         "200":
           description: OK
