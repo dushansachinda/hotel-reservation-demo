@@ -2,7 +2,7 @@ apiVersion: core.choreo.dev/v1alpha1
 kind: ComponentConfig
 metadata:
   # +required Name of the component that this configuration belongs to.
-  name: notofication-api
+  name: notification-api
   # +required Project name of the component that this component belongs to. Cannot be changed after creation.
   projectName: notifications
   annotations:
@@ -26,7 +26,7 @@ spec:
       networkVisibility: Public
       # +optional Context (base path) of the API that exposed via this endpoint.
       # This is mandatory if the endpoint type is set to REST or GraphQL.
-      context: /email
+      context: /notifications
       # +optional Path to the schema definition file. Defaults to wild card route if not provided
       # This is only applicable to REST endpoint types.
       # The path should be relative to the docker context.

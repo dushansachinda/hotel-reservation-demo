@@ -4,7 +4,7 @@ info:
   description: API for sending emails through Azure Communication Services
   version: "1.0"
 servers:
-  - url: "{server}:{port}/email"
+  - url: "{server}:{port}/notifications"
     description: Base server URL for Email API
     variables:
       server:
