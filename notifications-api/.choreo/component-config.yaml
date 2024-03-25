@@ -11,7 +11,7 @@ spec:
   # +optional Build instructions for the component.
   build:
     # +required Name of the branch. This is used to identify the corresponding deployment track.
-    branch: main
+    branch: complete
   # +optional Incoming connection details for the component (AKA Endpoints).
   inbound:
     # +required Unique name for the endpoint. (This name will be used when generating the managed API)
