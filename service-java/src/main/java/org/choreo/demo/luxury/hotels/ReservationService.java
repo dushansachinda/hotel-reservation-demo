@@ -53,7 +53,7 @@ public class ReservationService {
 
     public Reservation save(ReservationRequest reservationRequest) {
 
-        Optional<User> userOptional = userRepository.findById(Long.parseLong(reservationRequest.getUser().getId()));
+        Optional<User> userOptional = userRepository.findById(reservationRequest.getUser().getId());
         User user = null;
         if (userOptional.isEmpty()) {
             User u = new User();
